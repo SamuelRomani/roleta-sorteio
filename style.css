@@ -31,8 +31,8 @@ canvas {
   background-color: #fff;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  display: block;
-  margin: 1em auto;
+  display: inline-block;
+  margin: 1em;
 }
 .btn {
   background-color: #202020;
@@ -64,4 +64,7 @@ tr.pago {
   border-right: 10px solid transparent;
   border-bottom: 20px solid red;
   z-index: 10;
+}
+.roletas {
+  text-align: center;
 }

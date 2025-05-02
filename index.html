@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roleta Sorteio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roleta Dupla</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <div>Roleta Sorteio</div>
+    <div>Roleta Dupla</div>
     <nav>
       <button onclick="mostrar('inicio')">Início</button>
-      <button onclick="mostrar('roleta')">Roletas</button>
+      <button onclick="mostrar('roletas')">Roletas</button>
       <button onclick="mostrar('relatorio')">Relatório</button>
       <button onclick="resetar()">Resetar</button>
     </nav>
@@ -19,26 +19,32 @@
 
   <div id="inicio" class="container">
     <h2>Bem-vindo</h2>
-    <p>Este sistema realiza sorteios automatizados de nomes e valores. Ideal para premiações e sorteios personalizados.</p>
+    <p>Sistema com duas roletas: uma de nomes (via CSV) e uma de valores fixos. Com animação e som personalizado!</p>
   </div>
 
-  <div id="roleta" class="container hidden">
-    <input type="file" id="csvInput" accept=".csv">
-    <button class="btn" onclick="sortear()">Sortear Nome e Valor</button>
+  <div id="roletas" class="container hidden">
+    <input type="file" id="csvInput" accept=".csv" />
+    <div class="btns">
+      <button class="btn" onclick="sortearNome()">Sortear Nome</button>
+      <button class="btn" onclick="sortearValor()">Sortear Valor</button>
+      <button class="btn" onclick="sortearAmbos()">Sortear Ambos</button>
+    </div>
     <h3 id="resultado"></h3>
-    <div class="seta"></div>
-    <canvas id="roletaCanvas" width="300" height="300"></canvas>
+    <div class="roletas">
+      <div class="seta"></div>
+      <canvas id="roletaNomes" width="300" height="300"></canvas>
+      <canvas id="roletaValores" width="300" height="300"></canvas>
+    </div>
   </div>
 
   <div id="relatorio" class="container hidden">
     <table>
-      <thead>
-        <tr><th>Nome</th><th>Valor</th><th>Pago</th></tr>
-      </thead>
+      <thead><tr><th>Nome</th><th>Valor</th><th>Pago</th></tr></thead>
       <tbody id="tabelaRelatorio"></tbody>
     </table>
   </div>
 
+  <audio id="somGiro" src="giro_roleta.mp3" preload="auto"></audio>
   <script src="script.js"></script>
 </body>
 </html>
