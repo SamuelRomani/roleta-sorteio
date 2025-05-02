@@ -1,0 +1,67 @@
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+}
+header {
+  background: #202020;
+  padding: 1em;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav button {
+  background: transparent;
+  border: none;
+  color: white;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 1em;
+}
+.container {
+  padding: 2em;
+}
+.hidden {
+  display: none;
+}
+canvas {
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  display: block;
+  margin: 1em auto;
+}
+.btn {
+  background-color: #202020;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+tr.pago {
+  background-color: #d0ffd0;
+}
+.seta {
+  position: absolute;
+  top: 140px;
+  left: calc(50% - 10px);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid red;
+  z-index: 10;
+}
