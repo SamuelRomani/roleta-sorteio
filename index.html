@@ -1,57 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Roleta Dupla</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta Mensal de Canais 1</title> 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div>Roleta Dupla</div>
-        <nav>
-            <button onclick="mostrar('inicio')">Início</button>
-            <button onclick="mostrar('roletas')">Roletas</button>
-            <button onclick="mostrar('relatorio')">Relatório</button>
-            <button onclick="resetar()">Resetar</button>
-        </nav>
-    </header>
+    <div class="container mt-4">
+        <h1 class="mb-4 text-center">Roleta Mensal de Canais 1</h1>
 
-    <div id="inicio" class="container">
-        <h2>Bem-vindo</h2>
-        <p>Sistema com duas roletas: uma de nomes (via CSV) e uma de valores fixos. Com animação e som personalizado!</p>
-    </div>
-
-    <div id="roletas" class="container hidden">
-        <input type="file" id="csvInput" accept=".csv" />
-        <div class="btns">
-            <button class="btn" onclick="sortearAmbos()">Sortear Ambos</button>
-        </div>
-        <div class="display-resultados">
-            <div class="resultado-nome">Nome: <span id="resultadoNome"></span></div>
-            <div class="resultado-valor">Valor: <span id="resultadoValor"></span></div>
-        </div>
-        <div class="roletas-container">
-            <div class="roleta-wrapper">
-                <div class="seta"></div>
-                <canvas id="roletaNomes" width="300" height="300"></canvas>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div id="roletaContainer1" class="border p-3 rounded shadow-sm" data-titulo-roleta="Sortear Nomes"> 
+                    </div>
             </div>
-            <div class="roleta-wrapper">
-                <div class="seta"></div>
-                <canvas id="roletaValores" width="300" height="300"></canvas>
+
+            <div class="col-md-6 mb-4">
+                <div id="roletaContainer2" class="border p-3 rounded shadow-sm" data-titulo-roleta="Sortear Prêmio">
+                    </div>
             </div>
         </div>
     </div>
 
-    <div id="relatorio" class="container hidden">
-        <table>
-            <thead><tr><th>Nome</th><th>Valor</th><th>Pago</th></tr></thead>
-            <tbody id="tabelaRelatorio"></tbody>
-        </table>
+    <div class="modal fade" id="modalGerenciarItens" tabindex="-1" aria-labelledby="modalGerenciarItensLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg"> {/* 'modal-lg' para um modal maior, 'modal-dialog-centered' para centralizar verticalmente */}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalGerenciarItensLabel">Gerenciar Itens da Roleta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="itemInputModal" class="form-label">Adicionar novo item:</label>
+                        <div class="input-group"> {/* 'input-group' para agrupar input e botão */}
+                            <input type="text" class="form-control" id="itemInputModal" placeholder="Nome do item">
+                            <button class="btn btn-success" type="button" id="addItemBtnModal">Adicionar</button>
+                        </div>
+                    </div>
+                    <hr> {/* Linha divisória */}
+                    <h6>Itens Atuais (<span id="contadorItensModal">0</span>):</h6>
+                    {/* Lista onde os itens da roleta ativa serão exibidos. 'overflow-y: auto' para barra de rolagem se muitos itens. */}
+                    <ul id="listaItensModal" class="list-group mb-3" style="max-height: 250px; overflow-y: auto;">
+                        {/* Itens serão listados aqui pelo JavaScript */}
+                    </ul>
+                    <button class="btn btn-sm btn-danger" id="limparItensBtnModal">Limpar Todos os Itens</button>
+                </div>
+                <div class="modal-footer">
+                    {/* Botão para fechar o modal de gerenciamento */}
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <audio id="somGiro" src="giro_roleta.wav" preload="auto"></audio>
-    <audio id="somResultado" src="resultado_final.wav" preload="auto"></audio>
+    <div class="modal fade" id="modalResultadoSorteio" tabindex="-1" aria-labelledby="modalResultadoSorteioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalResultadoSorteioLabel">🎉 Resultado do Sorteio! 🎉</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <h2 class="display-4" id="itemSorteadoNoModal">Item Sorteado Aqui</h2>
+                    <p class="mt-2" id="skipInfoModal"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="sortearNovamenteBtnModalResultado">Sortear Novamente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,70 +1,326 @@
+/* style.css */
 
+/* -------------------------------------------------------------------------- */
+/* VARIÁVEIS GLOBAIS DE CORES E TEMA (PALETA CRESOL E TEMA ESCURO)           */
+/* -------------------------------------------------------------------------- */
+:root {
+    /* Cores da Paleta Cresol Convertidas para HEX (Tema Claro - Padrão) */
+    --cresol-verde-principal: #005C46;
+    --cresol-verde-secundario: #397039;
+    --cresol-laranja: #F58220;
+    --cresol-amarelo: #FEC92F;
+    --cresol-branco: #FFFFFF;
+    --cresol-cinza-claro: #D0D0CE;
+    --cresol-cinza-medio: #727176;
+    --cresol-preto: #212529;
+
+    /* Mapeamento semântico para Tema Claro com Cores Cresol */
+    --theme-background-page: #f4f6f0; 
+    --theme-surface: var(--cresol-branco);             
+    --theme-text-primary: var(--cresol-preto);
+    --theme-text-secondary: var(--cresol-cinza-medio);
+    --theme-border-color: var(--cresol-cinza-claro);   
+    --theme-primary-action: var(--cresol-verde-principal);
+    --theme-primary-action-text: var(--cresol-branco); 
+    --theme-secondary-action-text: var(--cresol-verde-principal);
+    --theme-secondary-action-border: var(--cresol-verde-secundario);
+    --theme-secondary-action-hover-bg: var(--cresol-verde-secundario);
+    --theme-secondary-action-hover-text: var(--cresol-branco);
+    --theme-modal-footer-bg: #e9ecef; 
+
+    /* Cores para Alertas - Tema Claro com Cores Cresol */
+    --alert-success-bg: #d4edda; --alert-success-text: #155724; --alert-success-border: #c3e6cb;
+    --alert-info-bg: #d1ecf1;    --alert-info-text: #0c5460;    --alert-info-border: #bee5eb;   
+    --alert-warning-bg: #fff3cd; --alert-warning-text: #856404; --alert-warning-border: #ffeeba; 
+    --alert-danger-bg: #f8d7da;  --alert-danger-text: #721c24;  --alert-danger-border: #f5c6cb;  
+    --alert-primary-bg: #cfe2ff; --alert-primary-text: var(--cresol-verde-principal); --alert-primary-border: var(--cresol-verde-principal);
+    --alert-secondary-bg: #e2e3e5; --alert-secondary-text: var(--theme-text-secondary); --alert-secondary-border: var(--cresol-cinza-claro);
+
+    /* Sobrescrevendo variáveis do Bootstrap */
+    --bs-primary: var(--theme-primary-action);
+    --bs-secondary: var(--cresol-cinza-medio); 
+    --bs-success: var(--cresol-verde-secundario); 
+    --bs-danger: #A72B0F; 
+    --bs-info: var(--cresol-laranja);  
+    --bs-warning: var(--cresol-amarelo); 
+    
+    --bs-body-font-family: 'Roboto', sans-serif;
+    --bs-body-color: var(--theme-text-primary);
+    --bs-body-bg: var(--theme-background-page);
+
+    --bs-border-radius: 0.3rem;         
+    --bs-border-radius-lg: 0.4rem;     
+    --bs-box-shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+    --bs-box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    --bs-box-shadow-lg: 0 1rem 3rem rgba(0,0,0,.125);
+}
+
+/* TEMA ESCURO - Aplicado quando o sistema do usuário prefere o modo escuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Mapeamento semântico para Tema Escuro Cresol */
+        --theme-background-page: #1a2e27;        
+        --theme-surface: #233f36;                
+        --theme-text-primary: var(--cresol-cinza-claro);           
+        --theme-text-secondary: #9aabb2;      
+        --theme-border-color: #395c4e;       
+
+        --theme-primary-action: #00A572;         
+        --theme-primary-action-text: var(--cresol-branco); /* Texto branco para botões primários no tema escuro, já que o verde é mais vibrante */
+        
+        --theme-secondary-action-text: var(--theme-text-primary);
+        --theme-secondary-action-border: #4a7a68; 
+        --theme-secondary-action-hover-bg: #4a7a68;
+        --theme-secondary-action-hover-text: var(--theme-text-primary);
+        --theme-modal-footer-bg: #1e352c; 
+
+        /* Alertas - Tema Escuro (adaptado) */
+        --alert-success-bg: #115930; --alert-success-text: #a8d5b3; --alert-success-border: #1a8749;
+        --alert-info-bg:    #5e340b; --alert-info-text:    #ffb366; --alert-info-border:    var(--cresol-laranja);
+        --alert-warning-bg: #665300; --alert-warning-text: #ffd34d; --alert-warning-border: var(--cresol-amarelo);
+        --alert-danger-bg:  #5c1708; --alert-danger-text:  #f7a091; --alert-danger-border:  #A72B0F;
+        --alert-primary-bg: #115930; --alert-primary-text: var(--theme-primary-action); --alert-primary-border: var(--theme-primary-action);
+        --alert-secondary-bg: #343a40; --alert-secondary-text: var(--theme-text-secondary); --alert-secondary-border: #4a7a68;
+
+        /* Sobrescrevendo Bootstrap para tema escuro Cresol */
+        --bs-body-color: var(--theme-text-primary);
+        --bs-body-bg: var(--theme-background-page);
+        --bs-primary: var(--theme-primary-action);
+        --bs-secondary: #9aabb2; 
+        --bs-list-group-bg: var(--theme-surface);
+        --bs-list-group-border-color: var(--theme-border-color);
+        --bs-list-group-color: var(--theme-text-primary);
+        --bs-modal-bg: var(--theme-surface);
+        --bs-modal-header-border-color: var(--theme-border-color);
+        --bs-modal-footer-border-color: var(--theme-border-color);
+        --bs-form-control-bg: #2b4a3f; 
+        --bs-form-control-color: var(--theme-text-primary);
+        --bs-form-control-border-color: var(--theme-border-color);
+        --bs-input-group-addon-bg: #395c4e; 
+        --bs-input-group-addon-color: var(--theme-text-primary);
+    }
+
+    /* Ajustes de texto de botões no tema escuro */
+    .btn-primary { color: var(--theme-primary-action-text); }
+    .btn-primary:hover, .btn-primary:focus { color: var(--theme-primary-action-text); }
+
+    .btn-outline-secondary.gerenciarItensBtn {
+        border-color: var(--theme-secondary-action-border);
+        color: var(--theme-secondary-action-text);
+    }
+    .btn-outline-secondary.gerenciarItensBtn:hover {
+        background-color: var(--theme-secondary-action-hover-bg);
+        color: var(--theme-secondary-action-hover-text);
+    }
+
+    #addItemBtnModal.btn-success { color: var(--theme-primary-action-text); }
+    #addItemBtnModal.btn-success:hover { color: var(--theme-primary-action-text); }
+
+    #limparItensBtnModal.btn-danger,
+    #listaItensModal .list-group-item button.btn-outline-danger {
+        border-color: #ff8a80; 
+        color: #ff8a80;      
+    }
+    #limparItensBtnModal.btn-danger:hover,
+    #listaItensModal .list-group-item button.btn-outline-danger:hover {
+        background-color: #ff8a80;
+        color: var(--theme-background-page); 
+    }
+    #limparItensBtnModal.btn-danger { 
+        background-color: #ff8a80;    
+        color: var(--theme-background-page); 
+        border-color: #ff8a80;
+    }
+     #limparItensBtnModal.btn-danger:hover { background-color: #fa5252; }
+
+    #modalResultadoSorteio .modal-footer .btn-outline-secondary {
+        border-color: var(--theme-secondary-action-border);
+        color: var(--theme-secondary-action-text);
+    }
+    #modalResultadoSorteio .modal-footer .btn-outline-secondary:hover {
+        background-color: var(--theme-secondary-action-hover-bg);
+        color: var(--theme-secondary-action-hover-text);
+    }
+}
+
+/* ESTILOS GERAIS (Aplicados em ambos os temas) */
 body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f2f2f2;
-  color: #333;
+    font-weight: 400; 
+    line-height: 1.6; 
+    padding-top: 1rem;   
+    padding-bottom: 2rem; 
+    background-color: var(--bs-body-bg); 
+    color: var(--bs-body-color);
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
-header {
-  background: #202020;
-  padding: 1em;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500; 
+    color: var(--theme-text-primary); 
 }
-nav button {
-  background: transparent;
-  border: none;
-  color: white;
-  margin: 0 10px;
-  cursor: pointer;
-  font-size: 1em;
+
+.container > h1.text-center {
+    color: var(--theme-primary-action); 
+    font-weight: 700;
+    margin-top: 1rem; 
+    margin-bottom: 2.5rem !important;
 }
-.container {
-  padding: 2em;
+
+.roleta-wrapper {
+    background-color: var(--theme-surface);
+    border-radius: var(--bs-border-radius-lg);
+    border: none; 
+    box-shadow: var(--bs-box-shadow);
+    padding: 1.5rem !important;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    transition: background-color 0.3s ease;
 }
-.hidden {
-  display: none;
+
+.roleta-titulo {
+    color: var(--theme-primary-action);
+    font-weight: 700;
+    margin-bottom: 1.25rem !important;
+    text-align: center;
 }
-canvas {
-  background-color: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  display: inline-block;
-  margin: 1em;
+
+.roletaCanvas {
+    border: none; 
+    border-radius: var(--bs-border-radius);
 }
+
+.roleta-wrapper > .d-flex { 
+    width: 100%; 
+    max-width: 400px; 
+}
+.roleta-wrapper > .resultado { 
+    width: 100%;
+    max-width: 400px;
+}
+
 .btn {
-  background-color: #202020;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  margin: 10px;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--bs-border-radius);
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-table {
-  width: 100%;
-  border-collapse: collapse;
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: var(--theme-primary-action-text); 
 }
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ccc;
+.btn-primary:hover, .btn-primary:focus {
+    background-color: color-mix(in srgb, var(--bs-primary) 85%, black);
+    border-color: color-mix(in srgb, var(--bs-primary) 80%, black);
+    color: var(--theme-primary-action-text);
 }
-tr.pago {
-  background-color: #d0ffd0;
+
+.btn-outline-secondary.gerenciarItensBtn {
+    border-color: var(--theme-secondary-action-border);
+    color: var(--theme-secondary-action-text);
+    padding: 0.4rem 0.8rem;
 }
-.seta {
-  position: absolute;
-  top: 140px;
-  left: calc(50% - 10px);
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid red;
-  z-index: 10;
+.btn-outline-secondary.gerenciarItensBtn:hover {
+    background-color: var(--theme-secondary-action-hover-bg);
+    color: var(--theme-secondary-action-hover-text);
 }
-.roletas {
-  text-align: center;
+
+#addItemBtnModal.btn-success {
+    background-color: var(--bs-success);
+    border-color: var(--bs-success);
+    color: var(--theme-primary-action-text); 
+}
+#addItemBtnModal.btn-success:hover {
+    background-color: color-mix(in srgb, var(--bs-success) 85%, black);
+    border-color: color-mix(in srgb, var(--bs-success) 80%, black);
+    color: var(--theme-primary-action-text);
+}
+
+#limparItensBtnModal.btn-danger {
+    background-color: var(--bs-danger);
+    border-color: var(--bs-danger);
+    color: var(--cresol-branco); 
+}
+#limparItensBtnModal.btn-danger:hover {
+    background-color: color-mix(in srgb, var(--bs-danger) 85%, black);
+    border-color: color-mix(in srgb, var(--bs-danger) 80%, black);
+}
+#listaItensModal .list-group-item button.btn-outline-danger {
+    border-color: var(--bs-danger);
+    color: var(--bs-danger);
+}
+#listaItensModal .list-group-item button.btn-outline-danger:hover {
+    background-color: var(--bs-danger);
+    color: var(--cresol-branco);
+}
+
+.modal-content {
+    border-radius: var(--bs-border-radius-lg);
+    border: 1px solid var(--theme-border-color);
+    box-shadow: var(--bs-box-shadow-lg);
+    background-color: var(--theme-surface); 
+    color: var(--theme-text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.modal-header {
+    border-bottom: 1px solid var(--theme-border-color);
+    padding: 1rem 1.5rem;
+}
+.modal-header .modal-title {
+    color: var(--theme-primary-action); 
+    font-weight: 700;
+}
+.modal-body { padding: 1.5rem; }
+.modal-footer {
+    border-top: 1px solid var(--theme-border-color);
+    padding: 1rem 1.5rem;
+    background-color: var(--theme-modal-footer-bg); 
+    display: flex; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+#modalGerenciarItens .modal-footer { justify-content: flex-end; } 
+#modalResultadoSorteio .modal-footer { justify-content: space-between; } 
+
+#modalResultadoSorteio .modal-footer .btn-outline-secondary {
+    border-color: var(--theme-secondary-action-border);
+    color: var(--theme-secondary-action-text);
+}
+#modalResultadoSorteio .modal-footer .btn-outline-secondary:hover {
+    background-color: var(--theme-secondary-action-hover-bg);
+    color: var(--theme-secondary-action-hover-text);
+}
+
+#listaItensModal .list-group-item {
+    border: 1px solid var(--theme-border-color);
+    color: var(--theme-text-primary);
+    background-color: var(--theme-surface); 
+    margin-bottom: -1px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+#listaItensModal .list-group-item:first-child { border-top-left-radius: var(--bs-border-radius); border-top-right-radius: var(--bs-border-radius); }
+#listaItensModal .list-group-item:last-child { border-bottom-left-radius: var(--bs-border-radius); border-bottom-right-radius: var(--bs-border-radius); margin-bottom: 0; }
+
+.alert { 
+    border-radius: var(--bs-border-radius); font-weight: 500; 
+    border-width: 0px; /* Bordas removidas */
+    border-style: solid; margin-top: 0.5rem; 
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.alert-success { background-color: var(--alert-success-bg); color: var(--alert-success-text); border-color: var(--alert-success-border); }
+.alert-info    { background-color: var(--alert-info-bg);    color: var(--alert-info-text);    border-color: var(--alert-info-border);    }
+.alert-warning { background-color: var(--alert-warning-bg); color: var(--alert-warning-text); border-color: var(--alert-warning-border); }
+.alert-danger  { background-color: var(--alert-danger-bg);  color: var(--alert-danger-text);  border-color: var(--alert-danger-border);  }
+.alert-primary { background-color: var(--alert-primary-bg); color: var(--alert-primary-text); border-color: var(--alert-primary-border); }
+.alert-secondary{ background-color: var(--alert-secondary-bg);color: var(--alert-secondary-text);border-color: var(--alert-secondary-border); }
+
+#modalResultadoSorteio .modal-header .modal-title { color: var(--theme-primary-action); }
+#modalResultadoSorteio .modal-body #itemSorteadoNoModal { 
+    color: var(--theme-text-primary); 
+    font-weight: 700; word-break: break-word; font-size: 2.5rem; 
+}
+#skipInfoModal { 
+    font-size: 0.9rem; color: var(--theme-text-secondary); 
+    font-style: italic; margin-top: 0.5rem; 
 }
