@@ -30,7 +30,7 @@
     </div>
 
     <div class="modal fade" id="modalGerenciarItens" tabindex="-1" aria-labelledby="modalGerenciarItensLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg"> {/* 'modal-lg' para um modal maior, 'modal-dialog-centered' para centralizar verticalmente */}
+        <div class="modal-dialog modal-dialog-centered modal-lg"> 
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalGerenciarItensLabel">Gerenciar Itens da Roleta</h5>
@@ -39,21 +39,21 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="itemInputModal" class="form-label">Adicionar novo item:</label>
-                        <div class="input-group"> {/* 'input-group' para agrupar input e botão */}
+                        <div class="input-group">
                             <input type="text" class="form-control" id="itemInputModal" placeholder="Nome do item">
                             <button class="btn btn-success" type="button" id="addItemBtnModal">Adicionar</button>
                         </div>
                     </div>
-                    <hr> {/* Linha divisória */}
+                    <hr>  
                     <h6>Itens Atuais (<span id="contadorItensModal">0</span>):</h6>
-                    {/* Lista onde os itens da roleta ativa serão exibidos. 'overflow-y: auto' para barra de rolagem se muitos itens. */}
+                   
                     <ul id="listaItensModal" class="list-group mb-3" style="max-height: 250px; overflow-y: auto;">
-                        {/* Itens serão listados aqui pelo JavaScript */}
+                       
                     </ul>
                     <button class="btn btn-sm btn-danger" id="limparItensBtnModal">Limpar Todos os Itens</button>
                 </div>
                 <div class="modal-footer">
-                    {/* Botão para fechar o modal de gerenciamento */}
+                    
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                 </div>
             </div>
